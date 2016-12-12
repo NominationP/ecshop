@@ -8,21 +8,23 @@
 {literal}
 <style type="text/css">
 #header-div {
-  background: #278296;
-  border-bottom: 1px solid #FFF;
+	background: #303030; height:76px;
 }
 
 #logo-div {
-  height: 50px;
-  float: left;
+	margin-left: 30px;
+	margin-top: 20px;
+	width: 262px;
+	height: 45px;
+	float: left;
 }
 
 #license-div {
-  height: 50px;
-  float: left;
-  text-align:center;
-  vertical-align:middle;
-  line-height:50px;
+	height: 50px;
+	float: left;
+	text-align: center;
+	vertical-align: middle;
+	line-height: 50px;
 }
 
 #license-div a:visited, #license-div a:link {
@@ -33,9 +35,17 @@
   text-decoration: none;
   color: #EB8A3D;
 }
-
+#loading-div {
+	clear: right;
+	text-align: right;
+	display: block;
+}
 #submenu-div {
-  height: 50px;
+	text-align: center;
+	width: 1000px;
+	position: absolute;
+	right: 0px;
+	height: 75px;
 }
 
 #submenu-div ul {
@@ -45,70 +55,144 @@
 }
 
 #submenu-div li {
-  float: right;
-  padding: 0 10px;
-  margin: 3px 0;
-  border-left: 1px solid #FFF;
+	float: right;
+	width: 82px;
+	height: 82px;
+	/*
+	border-left: 1px solid #27aae7;
+	border-right: 1px solid #0779ba;
+	*/
 }
-
-#submenu-div a:visited, #submenu-div a:link {
-  color: #FFF;
-  text-decoration: none;
+#submenu-div li a {
+	text-align: center;
+	height: 67px;
+	width: 82px;
+	padding-top: 8px;
+	display: block;
+	text-decoration: none;
+	color: #FFF;
 }
-
-#submenu-div a:hover {
-  color: #F5C29A;
+#submenu-div li a:hover {
+	background:#404040;
 }
-
-#loading-div {
-  clear: right;
-  text-align: right;
-  display: block;
+#submenu-div li span {
+	margin-top: 6px;
+	display: block;
 }
-
+#submenu-div li img {
+	margin: auto;
+	display: block;
+	height:35px;
+}
 #menu-div {
-  background: #80BDCB;
-  font-weight: bold;
-  height: 24px;
-  line-height:24px;
+	background: #575757;
+	height: 41px;
+	border-bottom:1px solid #212121;
 }
 
 #menu-div ul {
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
+	margin: 0px 0px 0px 15px;
+	padding: 0;
+	list-style-type: none;
 }
-
-#menu-div li {
-  float: left;
-  border-right: 1px solid #192E32;
-  border-left:1px solid #BBDDE5;
+#menu-div ul li {
+	float: left;
+	display: block;
+	height: 41px;
+	line-height: 41px;
+	position: relative;
 }
-
-#menu-div a:visited, #menu-div a:link {
-  display:block;
-  padding: 0 20px;
-  text-decoration: none;
-  color: #335B64;
-  background:#9CCBD6;
+.muneFG {
+	height: 13px;
+	width: 0px;
+	border-right: 1px solid #656565;
+	margin-top: 15px;
+*margin-top:-18px;
+	_margin-top: 0px;
+	border-left: 1px solid #303030;
+	display: inline-block;
 }
-
-#menu-div a:hover {
-  color: #000;
-  background:#80BDCB;
+#menu-div ul li a {
+	float: LEFT;
+	color: #FFF;
+	padding: 0px 12px;
+	display: block;
+	text-decoration: none;
+	_margin-top: 14px;
 }
-
-#submenu-div a.fix-submenu{ clear:both; margin-left:5px; padding:1px 5px; *padding:3px 5px 5px; background:#DDEEF2; color:#278296; }
-#submenu-div a.fix-submenu:hover{ padding:1px 5px; *padding:3px 5px 5px; background:#FFF; color:#278296; }
-#menu-div li.fix-spacel{ width:30px; border-left:none; }
-#menu-div li.fix-spacer{ border-right:none; }
+#menu-div ul li a:hover {
+	background: #1887bb
+}
+#menu-div ul li a span {
+	margin-left: 10px;
+}
+#menu-div ul li div.drop_menu{
+	height:180px; width:160px;border:1px solid #e5e5e5; background:#f4f4f4; position:absolute;left:0;top:42px; z-index:1000;
+}
+.num {
+	width: 32px;
+	height: 16px;
+	background: url(images/index-11_22.png) no-repeat scroll;
+	display: inline-block;
+	line-height: 16px;
+	vertical-align: middle;
+	text-align: center;
+}
+#menu-div ul li a img {
+	border: none;
+}
+#menu-div ul li ul {
+	display: none;
+}
+#menu-div ul li:hover a {
+	color: #fff;
+	background: #454545;
+}
+#menu-div ul li:hover ul {
+	display: block;
+	position: absolute;
+	top: 42px;
+	left: -15px;
+}
+#menu-div ul li:hover ul li {
+	border-bottom: 1px solid #11689c;
+	border-top: #1f9dd1 1px solid;
+}
+#menu-div ul li:hover ul li a {
+	width: 133px;
+	display: block;
+}
+#menu-div ul li:hover ul li a:hover {
+	width: 133px;
+	display: block;
+	background: #1480b3;
+}
+#menu-div ul li:hover ul li a.hide {
+	background: #6a3;
+	color: #fff;
+}
+#menu-div ul li:hover ul li:hover a.hide {
+	background: #6fc;
+	color: #fff;
+}
+#menu-div li.fix-spacer {
+	border: none;
+}
+.menuSerach {
+	width: 237px;
+	height: 15px;
+	float: right;
+	margin-right: 18px;
+	margin-top: -35px;
+	_width: 240px;
+}
 </style>
-{insert_scripts files="../js/transport.js"}
+{insert_scripts files="../js/transport_jquery.js"}
 <script type="text/javascript">
-onload = function()
-{
-  Ajax.call('index.php?is_ajax=1&act=license','', start_sendmail_Response, 'GET', 'JSON');
-}
+// onload = function()
+// {
+//   Ajax.call('index.php?is_ajax=1&act=license','', start_sendmail_Response, 'GET', 'JSON');
+// }
 /**
  * 帮助系统调用
  */
@@ -187,20 +271,25 @@ var adminId = "{$admin_id}";
 </head>
 <body>
 <div id="header-div">
-  <div id="logo-div" style="bgcolor:#000000;"><img src="images/ecshop_logo.gif" alt="ECSHOP - power for e-commerce" /></div>
+  <div id="logo-div" style="bgcolor:#000000;"><img src="images/topLogo.png" alt="ECSHOP - power for e-commerce" /></div>
   <div id="license-div" style="bgcolor:#000000;"></div>
   <div id="submenu-div">
     <ul>
-      <li><a href="index.php?act=about_us" target="main-frame">{$lang.about}</a></li>
-      <li><a href="javascript:web_address();">{$lang.help}</a></li>
-      <li><a href="../" target="_blank">{$lang.preview}</a></li>
-      <li><a href="message.php?act=list" target="main-frame">{$lang.view_message}</a></li>
-      <li><a href="privilege.php?act=modif" target="main-frame">{$lang.profile}</a></li>
-      <li><a href="javascript:window.top.frames['main-frame'].document.location.reload();window.top.frames['header-frame'].document.location.reload()">{$lang.refresh}</a></li>
-      <li><a href="#"  onclick="ShowToDoList()">{$lang.todolist}</a></li>
-      <li style="border-left:none;"><a href="index.php?act=first" target="main-frame">{$lang.shop_guide}</a></li>
+    <li><a href="privilege.php?act=logout" target="main-frame"><img src="images/topmune_08.png" style="border:none;"/><span>{$lang.signout}</span></a></li>
+     <li><a href="index.php?act=clear_cache" target="main-frame" class="fix-submenu"><img src="images/qingchu.png" style="border:none;"/><span>{$lang.clear_cache}</span></a></li>
+      <li><a href="http://www.ecmoban.com/ecshop_jieshao.html" target="main-frame"><img src="images/topmune_07.png" style="border:none;"/><span>{$lang.about}</span></a></li>
+      
+      <li><a href="javascript:web_address();"><img src="images/topmune_007.png" style="border:none;"/><span>{$lang.help}</span></a></li>
+      <li><a href="../" target="_blank"><img src="images/topmune_06.png" style="border:none;"/><span>{$lang.preview}</span></a></li>
+      <li><a href="message.php?act=list" target="main-frame"><img src="images/topmune_05.png" style="border:none;"/><span>{$lang.view_message}</span></a></li>
+      <li><a href="privilege.php?act=modif" target="main-frame"><img src="images/topmune_04.png" style="border:none;"/><span>{$lang.profile}</span></a></li>
+      <li><a href="javascript:window.top.frames['main-frame'].document.location.reload();window.top.frames['header-frame'].document.location.reload()"><img src="images/topmune_03.png" style="border:none;"/><span>{$lang.refresh}</span></a></li>
+      <li><a href="#"  onclick="ShowToDoList()"><img src="images/topmune_02.png" style="border:none;"/><span>{$lang.todolist}</span></a></li>
+      
+      <li style=""><a href="index.php?act=first" target="main-frame"><img src="images/topmune_01.png" style="border:none;"/><span>{$lang.shop_guide}</span></a></li>
+      <li style="width:102px;border-left:none;"><a href="http://www.ecmoban.com" target="main-frame" style="color:#ff0; width:102px; font-weight:bold;"><img src="images/topmune_09.png" style="border:none;"/><span>更多模板堂产品</span></a></li>
     </ul>
-    <div id="send_info" style="padding: 5px 10px 0 0; clear:right;text-align: right; color: #FF9900;width:40%;float: right;">
+    <div id="send_info" style="padding: 5px 10px 0 0; clear:right;text-align: right; color: #FF9900;width:40%;float: right;  display:none;">
       {if $send_mail_on eq 'on'}
       <span id="send_msg"><img src="images/top_loader.gif" width="16" height="16" alt="{$lang.loading}" style="vertical-align: middle" /> {$lang.email_sending}</span>
       <a href="javascript:;" onClick="Javascript:switcher()" id="lnkSwitch" style="margin-right:10px;color: #FF9900;text-decoration: underline">{$lang.pause}</a>
@@ -399,8 +488,13 @@ var adminId = "{$admin_id}";
 <div id="menu-div">
   <ul>
     <li class="fix-spacel">&nbsp;</li>
-    <li><a href="index.php?act=main" target="main-frame">{$lang.admin_home}</a></li>
-    <li><a href="privilege.php?act=modif" target="main-frame">{$lang.set_navigator}</a></li>
+    <li style="border-left:none;"><a href="index.php?act=main" target="main-frame"><img src="images/index-11_07.png" width="17" height="18" style="border:none;" align="absmiddle"/><span>{$lang.admin_home}</span></a><span class="muneFG"></span></li>
+    
+    <li><a href="privilege.php?act=modif" target="main-frame"><img src="images/index-11_41.png" width="17" height="18" align="absmiddle"/><span>{$lang.set_navigator}</span></a><span class="muneFG"></span></li>
+    <li><a href="goods.php?act=list" target="main-frame"><img src="images/index-11_09.png" width="17" height="18" align="absmiddle"/><span>商品管理</span><span class="num">{$goods_sum}</span></a><span class="muneFG"></span></li>
+     <li><a href="order.php?act=list" target="main-frame"><img src="images/dd.png" width="15" height="18" align="absmiddle"/><span>订单管理</span><span class="num">{$order_sum}</span></a><span class="muneFG"></span></li>
+     <li><a href="ads.php?act=list" target="main-frame"><img src="images/index-11_13.png" width="17" height="20" align="absmiddle"/><span>广告管理</span><span class="num">{$ad_sum}</span></a><span class="muneFG"></span></li>
+     <li><a href="comment_manage.php?act=list" target="main-frame"><img src="images/index-11_19.png" width="17" height="18" align="absmiddle"/><span>用户评论</span><span class="num">{$comment_sum}</span></a><span class="muneFG"></span></li>
     {foreach from=$nav_list item=item key=key}
     <li><a href="{$key}" target="main-frame">{$item}</a></li>
     {/foreach}

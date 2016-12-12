@@ -988,6 +988,7 @@ function cart_weight_price($type = CART_GENERAL_GOODS)
                 'LEFT JOIN ' . $GLOBALS['ecs']->table('goods') . ' AS g ON g.goods_id = c.goods_id '.
                 "WHERE c.session_id = '" . SESS_ID . "' " .
                 "AND rec_type = '$type' AND g.is_shipping = 0 AND c.extension_code != 'package_buy'";
+                
     $row = $GLOBALS['db']->getRow($sql);
 
     $packages_row['weight'] = floatval($row['weight']) + $package_row['weight'];
@@ -2335,6 +2336,18 @@ function order_query_sql($type = 'finished', $alias = '')
         return " AND {$alias}order_status " . db_create_in(array(OS_CONFIRMED, OS_SPLITED)) .
                " AND {$alias}shipping_status " . db_create_in(array(SS_SHIPPED, SS_RECEIVED)) .
                " AND {$alias}pay_status " . db_create_in(array(PS_PAYED, PS_PAYING)) . " ";
+    }
+	    /* 已确认订单 ecmoban zhou */
+    elseif ($type == 'queren')
+    {
+        return " AND   {$alias}order_status " .
+                 db_create_in(array(OS_CONFIRMED, OS_SPLITED, OS_SPLITING_PART)) ." ";
+    }
+    /* 已确认订单 ecmoban zhou */
+    elseif ($type == 'queren')
+    {
+        return " AND   {$alias}order_status " .
+                 db_create_in(array(OS_CONFIRMED, OS_SPLITED, OS_SPLITING_PART)) ." ";
     }
     /* 待发货订单 */
     elseif ($type == 'await_ship')
