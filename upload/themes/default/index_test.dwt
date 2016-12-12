@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="Keywords" content="{$keywords}" />
+<meta name="Description" content="{$description}" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>{$page_title}</title>
+商店公告：{$shop_notice}
+</head>
+<!-- 网站快讯：</br>
+{foreach from=$new_articles item=article}
+{$article.short_title}
+{/foreach}
+{foreach from=$new_articles item=article3}
+{$article3.short_title}</br>
+{/foreach}</br> -->
+<p>商品列表</p>
+<table width="70%" border="1">
+<tr>
+{foreach from=$best_goods item=goods}
+    <td><a href="{$goods.url}"><img src="{$goods.thumb}" border="0" /><br>{$goods.short_style_name}</a></td>
+{/foreach}
+</tr>
+</table>
+
+<!-- <p>新品上市</p>
+<table width="70%" border="1">
+<tr>
+    {foreach from=$new_goods item=goods}
+        <td><a href="{$goods.url}"><img src="{$goods.thumb}" border="0" /><br>{$goods.short_style_name}</a></td>
+    {/foreach}
+</tr>
+</table>
+
+<p>热卖商品</p>
+<table width="70%" border="1">
+<tr>
+{foreach from=$hot_goods item=remaishangpin}
+<td><a href="{$remaishangpin.url}"><img src="{$remaishangpin.thumb}" border="0" /><br>  {$remaishangpin.short_style_name}</a></td>
+{/foreach}
+</tr>
+</table> -->
+
+<p>分类列表</p>
+{foreach from=$categories item=fenlei}
+    <a href="{$fenlei.url}">{$fenlei.name}</a>
+    {foreach from=$fenlei.children item=child}
+    <br> --<a href="$child.url">{$child.name|escape:html}</a>
+    {/foreach}
+{/foreach}
+
+
+</html>

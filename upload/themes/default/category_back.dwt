@@ -1,0 +1,3 @@
+{foreach from=$goods_list item=goods}
+<img src="{$goods.goods_thumb}" border="0"  />
+<br> {$goods.goods_name} {/foreach}
