@@ -150,7 +150,7 @@ scrollAmount=3><U><FONT color=red>
   'integrate_code' => 'ecshop',
   'integrate_config' => '',
   'hash_code' => '2f1d4c8d7ac802a2342a7a43f17465a3',
-  'template' => 'ecmoban_tianmao2016',
+  'template' => 'default',
   'install_date' => '1481463640',
   'ecs_version' => 'v2.7.3',
   'sms_user_name' => '',

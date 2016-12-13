@@ -38,6 +38,8 @@ class cls_session
     var $_ip   = '';
     var $_time = 0;
 
+    //PHP5的构造函数,用于创建一个SESSION对象,为了保证对PHP4的兼容,其实是在该函数内部调用了和类同名的函数
+
     function __construct(&$db, $session_table, $session_data_table, $session_name = 'ECS_ID', $session_id = '')
     {
         $this->cls_session($db, $session_table, $session_data_table, $session_name, $session_id);
@@ -45,7 +47,11 @@ class cls_session
 
     function cls_session(&$db, $session_table, $session_data_table, $session_name = 'ECS_ID', $session_id = '')
     {
+        //将系统自带的$_SESSION初始化为一个空数组并放进全局函数里
+
         $GLOBALS['_SESSION'] = array();
+
+        //根据配置文件设置相关的类属性
 
         if (!empty($GLOBALS['cookie_path']))
         {
@@ -65,6 +71,8 @@ class cls_session
             $this->session_cookie_domain = '';
         }
 
+        //这里稍微提一下,如果你使用的是HTTPS连接,那么这里需要设置为true
+
         if (!empty($GLOBALS['cookie_secure']))
         {
             $this->session_cookie_secure = $GLOBALS['cookie_secure'];
@@ -80,6 +88,8 @@ class cls_session
 
         $this->db  = &$db;
         $this->_ip = real_ip();
+
+        //如果先前COOKIE中已经保存了sessionid则将他的值赋给session_id属性
 
         if ($session_id == '' && !empty($_COOKIE[$this->session_name]))
         {
@@ -107,11 +117,17 @@ class cls_session
 
         if ($this->session_id)
         {
+            //从数据库中取对应session_id的记录保存到$_SESSION中
+
             $this->load_session();
         }
         else
         {
+            //如果COOKIE中无值或者没能通过校检则创建一个全新且唯一的session_id
+
             $this->gen_session_id();
+
+            //写COOKIE
 
             setcookie($this->session_name, $this->session_id . $this->gen_session_key($this->session_id), 0, $this->session_cookie_path, $this->session_cookie_domain, $this->session_cookie_secure);
         }
@@ -119,12 +135,18 @@ class cls_session
         register_shutdown_function(array(&$this, 'close_session'));
     }
 
+
+
+    //生成一个唯一的session_id
+
     function gen_session_id()
     {
         $this->session_id = md5(uniqid(mt_rand(), true));
 
         return $this->insert_session();
     }
+
+    //对COOKIE中的session_id做CRC32校检
 
     function gen_session_key($session_id)
     {
@@ -138,6 +160,8 @@ class cls_session
         return sprintf('%08x', crc32(ROOT_PATH . $ip . $session_id));
     }
 
+    //如果数据库中对应COOKIE内session_id的记录已经不存在,则创建一条对应的空记录
+
     function insert_session()
     {
         return $this->db->query('INSERT INTO ' . $this->session_table . " (sesskey, expiry, ip, data) VALUES ('" . $this->session_id . "', '". $this->_time ."', '". $this->_ip ."', 'a:0:{}')");
@@ -145,6 +169,8 @@ class cls_session
 
     function load_session()
     {
+        //检索对应session_id的记录,如果不存在则创建一条空记录
+
         $session = $this->db->getRow('SELECT userid, adminid, user_name, user_rank, discount, email, data, expiry FROM ' . $this->session_table . " WHERE sesskey = '" . $this->session_id . "'");
         if (empty($session))
         {
@@ -156,10 +182,18 @@ class cls_session
         }
         else
         {
+            //如果在SESSION表中检索到对应数据,且SESSION还没有过期则进行相关赋值操作
+
             if (!empty($session['data']) && $this->_time - $session['expiry'] <= $this->max_life_time)
             {
                 $this->session_expiry = $session['expiry'];
+
+                //对记录的值做一个MD5校检,以检测后边SESSION值是否发生变化
+
                 $this->session_md5    = md5($session['data']);
+
+                //反序列化$session['data']将值存到$_SESSION中
+
                 $GLOBALS['_SESSION']  = unserialize($session['data']);
                 $GLOBALS['_SESSION']['user_id'] = $session['userid'];
                 $GLOBALS['_SESSION']['admin_id'] = $session['adminid'];
@@ -170,7 +204,12 @@ class cls_session
             }
             else
             {
+                //否则说明SESSION值超过255字节,则到SESSION_DATA_TABLE表里边查询值
+
                 $session_data = $this->db->getRow('SELECT data, expiry FROM ' . $this->session_data_table . " WHERE sesskey = '" . $this->session_id . "'");
+
+                //如果在SESSION_DATA_TABLE表中检索到对应数据,且SESSION还没有过期则进行相关赋值操作
+
                 if (!empty($session_data['data']) && $this->_time - $session_data['expiry'] <= $this->max_life_time)
                 {
                     $this->session_expiry = $session_data['expiry'];
@@ -195,6 +234,8 @@ class cls_session
 
     function update_session()
     {
+        //取得页面中$_SESSION变量内的值
+
         $adminid = !empty($GLOBALS['_SESSION']['admin_id']) ? intval($GLOBALS['_SESSION']['admin_id']) : 0;
         $userid  = !empty($GLOBALS['_SESSION']['user_id'])  ? intval($GLOBALS['_SESSION']['user_id'])  : 0;
         $user_name  = !empty($GLOBALS['_SESSION']['user_name'])  ? trim($GLOBALS['_SESSION']['user_name'])  : 0;
@@ -211,10 +252,14 @@ class cls_session
         $data        = serialize($GLOBALS['_SESSION']);
         $this->_time = time();
 
+        //如果页面上SESSION的值没有发生变化并且最后一次SESSION更新时间距离当前时间小于10秒则跳出函数
+
         if ($this->session_md5 == md5($data) && $this->_time < $this->session_expiry + 10)
         {
             return true;
         }
+
+        //转义SESSION的值用于安全入库
 
         $data = addslashes($data);
 
@@ -225,8 +270,12 @@ class cls_session
             $data = '';
         }
 
+        //更新SESSION个字段的值,主要作用是更新expiry这个字段,以此来判断用户是否处于活动状态
+
         return $this->db->query('UPDATE ' . $this->session_table . " SET expiry = '" . $this->_time . "', ip = '" . $this->_ip . "', userid = '" . $userid . "', adminid = '" . $adminid . "', user_name='" . $user_name . "', user_rank='" . $user_rank . "', discount='" . $discount . "', email='" . $email . "', data = '$data' WHERE sesskey = '" . $this->session_id . "' LIMIT 1");
     }
+
+    //register_shutdown_function将调用这个函数进行SESSION的更新和删除过期数据的操作
 
     function close_session()
     {
@@ -257,6 +306,8 @@ class cls_session
             return false;
         }
     }
+
+    //清空$_SESSION
 
     function destroy_session()
     {

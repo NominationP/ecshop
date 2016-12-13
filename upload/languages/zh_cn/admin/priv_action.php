@@ -151,4 +151,7 @@ $_LANG['sms_charge']      = '短信充值';
 $_LANG['send_history']    = '发送记录';
 $_LANG['charge_history']  = '充值记录 ';
 
+//购物卡
+$_LANG['shop_card']       = '购物卡管理'
+
 ?>

@@ -150,4 +150,8 @@ if (!defined('IN_ECS'))
     $purview['magazine_list']        = 'magazine_list';
     $purview['view_sendlist']        = 'view_sendlist';
 
+//shop card test
+    $purview['shop_card']            = 'shop_card';
+
+
 ?>

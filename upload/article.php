@@ -129,6 +129,8 @@ else
     $smarty->display('article_pro.dwt', $cache_id);
 }
 
+$db->query("update ".$ecs->table('article')." set click_count=click_count+1 where article_id=$article_id") ;
+
 /*------------------------------------------------------ */
 //-- PRIVATE FUNCTION
 /*------------------------------------------------------ */

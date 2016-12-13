@@ -96,22 +96,6 @@ $data = array (
     'id' => '1',
     'name' => '手机类型',
   ),
-  2 => 
-  array (
-    'cat_id' => '2',
-    'cat_name' => 'CDMA手机',
-    'measure_unit' => '',
-    'parent_id' => '1',
-    'is_show' => '1',
-    'show_in_nav' => '0',
-    'grade' => '0',
-    'sort_order' => '50',
-    'has_children' => '0',
-    'goods_num' => 0,
-    'level' => 1,
-    'id' => '2',
-    'name' => 'CDMA手机',
-  ),
   3 => 
   array (
     'cat_id' => '3',
@@ -159,6 +143,22 @@ $data = array (
     'level' => 1,
     'id' => '5',
     'name' => '双模手机',
+  ),
+  2 => 
+  array (
+    'cat_id' => '2',
+    'cat_name' => 'CDMA手机',
+    'measure_unit' => '',
+    'parent_id' => '1',
+    'is_show' => '1',
+    'show_in_nav' => '0',
+    'grade' => '0',
+    'sort_order' => '50',
+    'has_children' => '0',
+    'goods_num' => 0,
+    'level' => 1,
+    'id' => '2',
+    'name' => 'CDMA手机',
   ),
   12 => 
   array (

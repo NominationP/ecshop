@@ -1,7 +1,6 @@
-<div class="box" id='history_div'> <div class="box_1">
- <h3><span><?php echo $this->_var['lang']['view_history']; ?></span></h3>
-
- 
+<div class="box" id='history_div'>
+ <div class="box_1">
+  <h3><span><?php echo $this->_var['lang']['view_history']; ?></span></h3>
   <div class="boxCenterList clearfix" id='history_list'>
     <?php 
 $k = array (

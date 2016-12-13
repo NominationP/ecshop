@@ -1,0 +1,13 @@
+
+商品图片: <img src="{$goods.goods_img}" /><br><br>
+商品名称：{$goods.goods_style_name}<br><br>
+商品货号：{$goods.goods_sn}<br><br>
+商品品牌: {$goods.goods_brand}<br><br>
+商品数量：{$goods.goods_number}
+单位：{$goods.measure_unit}<br><br>
+添加时间：{$goods.add_time}<br><br>
+市场价格：{$goods.market_price}<br><br>
+本店价格：{$goods.shop_price_formated}<br><br>
+注册用户价格：{$rank_price.price}<br><br>
+注册用户价格：{$rank_price.price}<br><br>
+注册用户价格：{$rank_price.price}<br><br>
